@@ -1,14 +1,19 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import selenium.SeleniumWrapper;
+import selenium.UnicornSiteWrapper;
 
 public class Main {
     public static void main(String[] args) {
 
-        WebDriver driver = new ChromeDriver();
 
-        driver.get("https://en.wikipedia.org/wiki/Menger_sponge");
+        // temp main
+        // algo test menu
+        String tempUrl = "https://uuapp.plus4u.net/uu-coursekit-courseg01/286a85d928da49ebb60816c715ae15dc/course/testMenu";
 
-        String title = driver.getTitle();
-        System.out.println("Hello, World!" + title);
+        SeleniumWrapper selenium = new SeleniumWrapper();
+        UnicornSiteWrapper unicornSite = new UnicornSiteWrapper(tempUrl, selenium);
+
+        unicornSite.login();
+
+        System.out.println("Hello, World!");
     }
 }
