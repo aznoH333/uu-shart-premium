@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class SeleniumWrapper {
@@ -31,9 +33,8 @@ public class SeleniumWrapper {
         return new FirefoxDriver(options);
     }
 
-    public SeleniumWrapper goToUrl(String url) {
+    public void goToUrl(String url) {
         this.driver.get(url);
-        return this;
     }
 
     public void awaitUserAction(String message) {
@@ -53,6 +54,16 @@ public class SeleniumWrapper {
         }
     }
 
+    public List<WebElement> getElements(By by) {
+        try {
+            return this.driver.findElements(by);
+        }catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+
+
     public WebElement awaitElement(By by, int timeout, int attempts) {
         WebElement element = null;
         
@@ -66,8 +77,8 @@ public class SeleniumWrapper {
         
         return element;
     }
-    
-    
+
+
     public WebElement awaitElement(By by) {
         return awaitElement(by, timeout, attempts);
     }
