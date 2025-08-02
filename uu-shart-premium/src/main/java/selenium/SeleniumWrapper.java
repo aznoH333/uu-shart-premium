@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.Scanner;
 
@@ -16,10 +17,18 @@ public class SeleniumWrapper {
     private final Scanner scanner;
 
     public SeleniumWrapper() {
-        this.driver = new FirefoxDriver();
+        this.driver = setupWrapper();
         this.scanner = new Scanner(System.in);
         this.timeout = 60;
         this.attempts = 10;
+    }
+
+    private static WebDriver setupWrapper() {
+        FirefoxOptions options = new FirefoxOptions();
+        options.addArguments("-profile");
+        options.addArguments("/home/aznoh/.mozilla/firefox/t6sqc75p.default-release"); // TODO set profile from outside
+
+        return new FirefoxDriver(options);
     }
 
     public SeleniumWrapper goToUrl(String url) {
