@@ -3,6 +3,10 @@ package selenium;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.chromium.ChromiumDriver;
+import org.openqa.selenium.chromium.ChromiumOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
@@ -26,11 +30,11 @@ public class SeleniumWrapper {
     }
 
     private static WebDriver setupWrapper() {
-        FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("-profile");
-        options.addArguments("/home/aznoh/.mozilla/firefox/t6sqc75p.default-release"); // TODO set profile from outside
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("user-data-dir=/home/aznoh/.config/chromium");// TODO set profile from outside
+        options.addArguments("profile-directory=Default");
 
-        return new FirefoxDriver(options);
+        return new ChromeDriver(options);
     }
 
     public void goToUrl(String url) {
