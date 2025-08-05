@@ -61,24 +61,40 @@ public class UnicornSiteWrapper {
         selenium.awaitElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.BUTTON_CHECK_CLASS));
 
 
-        for (UnicornTaskSolver solver : solvers) {
-            if (!solver.canSolve(selenium)) {
-                continue;
+        while (!isTestComplete()) {
+            boolean solved = false;
+
+            for (UnicornTaskSolver solver : solvers) {
+                if (!solver.canSolve(selenium)) {
+                    continue;
+                }
+                System.out.println("solving");
+                solver.passProblem(selenium);
+                solved = true;
+                selenium.wait(1000); // wait for js bs to execute
+                selenium.clickElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.CONTINUE_BUTTON_CLASS)); // TODO : this for some reason triggers a popup?
+
+                break;
             }
 
-            solver.passProblem(selenium);
-            break;
+            if (!solved) {
+                System.out.println("No solution found"); // TODO : proper error handling
+            }
         }
-
-        selenium.clickElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.CONTINUE_BUTTON_CLASS));
-
+        selenium.clickElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.FINISH_TEST_BUTTON_CLASS));
 
 
+        System.out.println("Finished test. TODO this");
+        System.exit(1);
 
         // TODO : this
     }
 
     public void addSolver(UnicornTaskSolver solver) {
         this.solvers.add(solver);
+    }
+
+    private boolean isTestComplete() {
+        return selenium.isElementPresent(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.FINISH_TEST_BUTTON_CLASS));
     }
 }

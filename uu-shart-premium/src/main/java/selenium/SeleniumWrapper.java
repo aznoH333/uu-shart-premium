@@ -105,7 +105,7 @@ public class SeleniumWrapper {
     }
 
     public void clickElement(By by) {
-        this.awaitElement(by).click();
+        this.getElement(by).click();
     }
 
     public boolean isElementPresent(By by) {
