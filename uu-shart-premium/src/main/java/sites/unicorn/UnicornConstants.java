@@ -1,4 +1,4 @@
-package selenium;
+package sites.unicorn;
 
 public class UnicornConstants {
 
@@ -17,6 +17,11 @@ public class UnicornConstants {
         public static final String TEST_TITLE = "uu5-bricks-text uu5-common-text uu-coursekit-question-page-background-text uu-coursekit-multiline-ellipsis uu-coursekit-multiline-ellipsis-1 uu5-bricks-text-nesting-level-small-box";
         public static final String TEST_START_BUTTON = "uu5-bricks-button uu-bricks-1py3saz uu-coursekit-rounded-button undefined uu-coursekit-rounded-button-large uu-coursekit-question-page-primary-button uu-coursekit-button-full uu-coursekit-button-page-background uu5-bricks-button-xl uu5-bricks-button-filled uu-bricks-zsiwht uu-bricks-1scckva";
 
+    }
+
+    public static class TEST_PAGE {
+        public static final String BUTTON_CHECK_CLASS = "uu5-bricks-button uu-bricks-1py3saz uu-coursekit-rounded-button undefined uu-coursekit-rounded-button-small uu-coursekit-question-page-primary-button uu-coursekit-button-outlined uu-coursekit-button-page-background uu5-bricks-button-m";
+        public static final String CONTINUE_BUTTON_CLASS = "uu5-bricks-button uu-bricks-1py3saz uu-coursekit-rounded-button undefined uu-coursekit-rounded-button-large uu-coursekit-question-page-primary-button uu-coursekit-button-full uu-coursekit-button-page-background uu5-common-disabled uu5-bricks-button-xl uu5-bricks-button-filled";
     }
 
 }

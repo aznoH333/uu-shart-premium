@@ -1,9 +1,13 @@
-package selenium;
+package sites.unicorn;
 
 import knowledge.KnowledgeRepository;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import selenium.ByUtils;
+import selenium.SeleniumWrapper;
+import sites.UnicornTaskSolver;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UnicornSiteWrapper {
@@ -11,11 +15,13 @@ public class UnicornSiteWrapper {
     private final SeleniumWrapper selenium;
     private final String testUrl;
     private final KnowledgeRepository knowledgeRepository;
+    private final ArrayList<UnicornTaskSolver> solvers;
 
     public UnicornSiteWrapper(String testUrl, SeleniumWrapper wrapper, KnowledgeRepository knowledge) {
         this.testUrl = testUrl;
         this.selenium = wrapper;
         this.knowledgeRepository = knowledge;
+        this.solvers = new ArrayList<>();
         selenium.goToUrl(testUrl);
     }
 
@@ -51,6 +57,28 @@ public class UnicornSiteWrapper {
     }
 
     public void solveTest() {
+        // wait for page load
+        selenium.awaitElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.BUTTON_CHECK_CLASS));
+
+
+        for (UnicornTaskSolver solver : solvers) {
+            if (!solver.canSolve(selenium)) {
+                continue;
+            }
+
+            solver.passProblem(selenium);
+            break;
+        }
+
+        selenium.clickElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.CONTINUE_BUTTON_CLASS));
+
+
+
+
         // TODO : this
+    }
+
+    public void addSolver(UnicornTaskSolver solver) {
+        this.solvers.add(solver);
     }
 }

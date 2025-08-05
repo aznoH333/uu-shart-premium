@@ -5,10 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.chromium.ChromiumDriver;
-import org.openqa.selenium.chromium.ChromiumOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +22,7 @@ public class SeleniumWrapper {
         this.driver = setupWrapper();
         this.scanner = new Scanner(System.in);
         this.timeout = 60;
-        this.attempts = 10;
+        this.attempts = 500;
     }
 
     private static WebDriver setupWrapper() {
@@ -96,10 +92,26 @@ public class SeleniumWrapper {
         }
     }
 
+    public void clickFirstInCollection(By by) {
+        this.getElements(by).getFirst().click();
+    }
+
+    public void clickLastInCollection(By by) {
+        this.getElements(by).getLast().click();
+    }
+
+    public int countElements(By by) {
+        return this.getElements(by).size();
+    }
+
     public void clickElement(By by) {
         this.awaitElement(by).click();
     }
-    
+
+    public boolean isElementPresent(By by) {
+        return this.getElement(by) != null;
+    }
+
     public void clickElementImmediately(By by) {
         this.getElement(by).click();
     }
