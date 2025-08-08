@@ -20,8 +20,12 @@ public class Main {
         unicornSite.addSolver(new T2SingleChoiceSolver());
         unicornSite.addSolver(new T3MultiChoiceSolver());
         unicornSite.addSolver(new T4PicturePickSolver());
+        unicornSite.addSolver(new T6JoinQuestionSolver());
+        unicornSite.addSolver(new T7JoinTripleQuestionSolver());
         unicornSite.addSolver(new T8OrderOptionsAltSolver());
         unicornSite.addSolver(new T9OrderOptionsSolver());
+        unicornSite.addSolver(new T10YesNoSolver());
+        unicornSite.addSolver(new T11SingleChoiceMultiPartSolver());
 
 
         unicornSite.login();

@@ -96,6 +96,10 @@ public class SeleniumWrapper {
         this.getElements(by).getFirst().click();
     }
 
+    public void clickElementInCollection(By by, int index) {
+        this.getElements(by).get(index).click();
+    }
+
     public void clickLastInCollection(By by) {
         this.getElements(by).getLast().click();
     }

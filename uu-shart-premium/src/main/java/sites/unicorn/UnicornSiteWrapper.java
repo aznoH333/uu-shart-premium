@@ -71,9 +71,7 @@ public class UnicornSiteWrapper {
                 System.out.println("solving");
                 solver.passProblem(selenium);
                 solved = true;
-                selenium.wait(1000); // wait for js bs to execute
-                selenium.clickElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.CONTINUE_BUTTON_CLASS)); // TODO : this for some reason triggers a popup?
-
+                selenium.clickElementInCollection(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.CONTINUE_BUTTON_CLASS), 1);
                 break;
             }
 
