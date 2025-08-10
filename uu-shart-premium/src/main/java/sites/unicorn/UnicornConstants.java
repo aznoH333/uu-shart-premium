@@ -23,6 +23,14 @@ public class UnicornConstants {
         public static final String BUTTON_CHECK_CLASS = "uu5-bricks-button uu-bricks-1py3saz uu-coursekit-rounded-button undefined uu-coursekit-rounded-button-small uu-coursekit-question-page-primary-button uu-coursekit-button-outlined uu-coursekit-button-page-background uu5-bricks-button-m";
         public static final String CONTINUE_BUTTON_CLASS = "uu5-bricks-button uu-bricks-1py3saz uu-coursekit-rounded-button undefined uu-coursekit-rounded-button-large uu-coursekit-question-page-primary-button uu-coursekit-button-full uu-coursekit-button-page-background uu5-bricks-button-xl uu5-bricks-button-filled uu-bricks-zsiwht uu-bricks-1scckva";
         public static final String FINISH_TEST_BUTTON_CLASS = "uu5-bricks-button uu-bricks-1py3saz uu-coursekit-rounded-button undefined uu-coursekit-rounded-button-large uu-coursekit-page-primary-button uu-coursekit-button-full uu-coursekit-button-page-background uu5-bricks-button-xl uu5-bricks-button-filled uu-bricks-zsiwht uu-bricks-1scckva";
+        public static final String CONFIRM_TEST_BUTTON_CLASS = "uu5-bricks-button uu-bricks-1py3saz uu-coursekit-leave-warning-button uu5-bricks-button-m uu5-bricks-button-filled uu-bricks-zsiwht uu-bricks-1scckva";
+        public static final String GO_TO_RESULTS_BUTTON_CLASS = "uu5-bricks-button uu-bricks-1py3saz uu-coursekit-rounded-button undefined uu-coursekit-rounded-button-large uu-coursekit-page-primary-button uu-coursekit-button-full uu-coursekit-button-page-background uu5-bricks-button-xl uu5-bricks-button-filled uu-bricks-zsiwht uu-bricks-1scckva";
     }
+
+
+    public static class RESULTS_PAGE {
+        public static final String RESULTS_CONTAINER_CLASS = "uu5-bricks-panel-body-body";
+    }
+
 
 }

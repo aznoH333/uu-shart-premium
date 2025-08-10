@@ -4,11 +4,12 @@ import org.openqa.selenium.WebElement;
 import selenium.ByUtils;
 import selenium.SeleniumWrapper;
 import sites.UnicornTaskSolver;
+import sites.unicorn.UnicornElementConditions;
 
 import java.util.List;
 
 public class T6JoinQuestionSolver implements UnicornTaskSolver {
-    private final static String BUTTON_CLASS = "uu5-common-div uu-coursekit-question-t06-white-frame-answer-button";
+    private final static String BUTTON_CLASS = "uu-coursekit-question-t06-white-frame-answer-button";
 
     @Override
     public String getName() {
@@ -22,14 +23,16 @@ public class T6JoinQuestionSolver implements UnicornTaskSolver {
 
     @Override
     public void passProblem(SeleniumWrapper selenium) {
-        List<WebElement> buttons = selenium.getElements(ByUtils.compoundClass(BUTTON_CLASS));
+        List<WebElement> buttons = selenium.getElements(ByUtils.classNameParentsOnly(BUTTON_CLASS));
+        System.out.println(buttons.size());
+        int combinationCount = buttons.size() / 2;
+        int deadIndicies = 0;
 
-
-        int combinationCount = buttons.size() / 4;
-
-        for (int i = combinationCount; i > 0; i--) {
-            buttons.get(i * 4 - 1).click();
-            buttons.get(i * 2 - 1).click();
+        for (int i = 0; i < combinationCount; i++) {
+            // click top left due to some jpeg fuckery
+            selenium.setClickParameterCondition(UnicornElementConditions.HAS_TEXT_OR_IMAGE).setClickParameterLocation(0, 0).clickElementInCollection(ByUtils.classNameParentsOnly(BUTTON_CLASS), deadIndicies);
+            selenium.setClickParameterCondition(UnicornElementConditions.HAS_TEXT_OR_IMAGE).setClickParameterLocation(0, 0).clickElementInCollection(ByUtils.classNameParentsOnly(BUTTON_CLASS), deadIndicies + (combinationCount - i));
+            deadIndicies += 2;
         }
     }
 

@@ -60,10 +60,9 @@ public class UnicornSiteWrapper {
         // wait for page load
         selenium.awaitElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.BUTTON_CHECK_CLASS));
 
-
+        // solve tasks
         while (!isTestComplete()) {
             boolean solved = false;
-
             for (UnicornTaskSolver solver : solvers) {
                 if (!solver.canSolve(selenium)) {
                     continue;
@@ -79,11 +78,18 @@ public class UnicornSiteWrapper {
                 System.out.println("No solution found"); // TODO : proper error handling
             }
         }
+        // complete test
         selenium.clickElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.FINISH_TEST_BUTTON_CLASS));
+        selenium.wait(300);
+        selenium.clickElementInCollection(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.CONFIRM_TEST_BUTTON_CLASS), 1);
+        selenium.waitForElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.GO_TO_RESULTS_BUTTON_CLASS));
+        selenium.clickFirstInCollection(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.GO_TO_RESULTS_BUTTON_CLASS));
 
-
-        System.out.println("Finished test. TODO this");
-        System.exit(1);
+        // read results
+        selenium.waitForElement(By.className(UnicornConstants.RESULTS_PAGE.RESULTS_CONTAINER_CLASS));
+        List<WebElement> results = selenium.getElements(By.className(UnicornConstants.RESULTS_PAGE.RESULTS_CONTAINER_CLASS));
+        System.out.println(results.size());
+        System.exit(69);
 
         // TODO : this
     }

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +18,26 @@ public class SeleniumWrapper {
     private int attempts;
     private final WebDriver driver;
     private final Scanner scanner;
+    // click action
+    private boolean useDefaultClick;
+    private int clickX;
+    private int clickY;
+    // await condition
+    ElementAwaitCondition elementAwaitCondition;
+
+    private final static int DEFAULT_TIMEOUT = 60;
+    private final static int DEFAULT_ATTEMPTS = 500;
+    private final static boolean DEFAULT_USE_DEFAULT_CLICK = false;
 
     public SeleniumWrapper() {
         this.driver = setupWrapper();
         this.scanner = new Scanner(System.in);
-        this.timeout = 60;
-        this.attempts = 500;
+        this.timeout = DEFAULT_TIMEOUT;
+        this.attempts = DEFAULT_ATTEMPTS;
+        this.useDefaultClick = DEFAULT_USE_DEFAULT_CLICK;
+        this.clickX = 0;
+        this.clickY = 0;
+        elementAwaitCondition = null;
     }
 
     private static WebDriver setupWrapper() {
@@ -92,24 +107,52 @@ public class SeleniumWrapper {
         }
     }
 
+    private void waitForConditionToPass(By by, ElementAwaitCondition condition) {
+        WebElement element = null;
+
+        for (int i = 0; i < attempts; i++) {
+            element = getElement(by);
+            if (element != null && condition.doesElementPass(element)) {
+                break;
+            }
+            wait(timeout);
+        }
+    }
+
     public void clickFirstInCollection(By by) {
-        this.getElements(by).getFirst().click();
+        this.performClickAction(this.getElements(by).getFirst());
     }
 
     public void clickElementInCollection(By by, int index) {
-        this.getElements(by).get(index).click();
+        this.performClickAction(this.getElements(by).get(index));
     }
 
     public void clickLastInCollection(By by) {
-        this.getElements(by).getLast().click();
+        this.performClickAction(this.getElements(by).getLast());
     }
+
 
     public int countElements(By by) {
         return this.getElements(by).size();
     }
 
     public void clickElement(By by) {
-        this.getElement(by).click();
+        this.performClickAction(this.getElement(by));
+    }
+
+    private void performClickAction(WebElement element) {
+        if (this.elementAwaitCondition != null) {
+            String xPath = this.getElementXPath(element);
+            this.waitForConditionToPass(By.xpath(xPath), this.elementAwaitCondition);
+        }
+
+        if (this.useDefaultClick) {
+            element.click();
+        }else {
+            Actions actions = new Actions(driver);
+            actions.moveToElement(element, this.clickX, this.clickY).click().perform();
+        }
+        this.performedAction();
     }
 
     public boolean isElementPresent(By by) {
@@ -130,4 +173,46 @@ public class SeleniumWrapper {
         return this;
     }
 
+    public SeleniumWrapper setClickParameterLocation(int clickX, int clickY) {
+        this.clickX = clickX;
+        this.clickY = clickY;
+        this.useDefaultClick = false;
+        return this;
+    }
+
+    public SeleniumWrapper setClickParameterCondition(ElementAwaitCondition condition) {
+        this.elementAwaitCondition = condition;
+        return this;
+    }
+
+    private void performedAction() {
+        // reset values to default state
+        this.timeout = DEFAULT_TIMEOUT;
+        this.attempts = DEFAULT_ATTEMPTS;
+        this.useDefaultClick = DEFAULT_USE_DEFAULT_CLICK;
+        this.elementAwaitCondition = null;
+    }
+
+    private String getElementXPath(WebElement element) {
+        String tagName = element.getTagName();
+
+        int index = getElementIndex(element);
+
+        return "//" + tagName + "[" + index + "]";
+    }
+
+    private int getElementIndex(WebElement element) {
+        WebElement parent = element.findElement(By.xpath(".."));
+
+        List<WebElement> siblings = parent.findElements(By.xpath("./" + element.getTagName()));
+
+        int index = 1;
+        for (WebElement sibling : siblings) {
+            if (sibling.equals(element)) {
+                break;
+            }
+            index++;
+        }
+        return index;
+    }
 }
