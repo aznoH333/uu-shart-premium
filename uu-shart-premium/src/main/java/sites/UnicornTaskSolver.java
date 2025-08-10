@@ -1,6 +1,8 @@
 package sites;
 
+import knowledge.units.KnowledgeUnit;
 import selenium.SeleniumWrapper;
+import sites.unicorn.UnicornResultWrapper;
 
 public interface UnicornTaskSolver {
     String getName();
@@ -9,5 +11,5 @@ public interface UnicornTaskSolver {
 
     void passProblem(SeleniumWrapper selenium);
 
-    void storeSolution(SeleniumWrapper selenium);
+    KnowledgeUnit generateSolution(UnicornResultWrapper result);
 }

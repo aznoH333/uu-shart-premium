@@ -1,8 +1,10 @@
 package sites.unicorn.solvers;
 
+import knowledge.units.KnowledgeUnit;
 import org.openqa.selenium.By;
 import selenium.SeleniumWrapper;
 import sites.UnicornTaskSolver;
+import sites.unicorn.UnicornResultWrapper;
 
 public class T11SingleChoiceMultiPartSolver implements UnicornTaskSolver {
     private final static String BUTTON_CLASS = "uu-coursekit-question-t11-white-frame-answer-button";
@@ -29,7 +31,9 @@ public class T11SingleChoiceMultiPartSolver implements UnicornTaskSolver {
     }
 
     @Override
-    public void storeSolution(SeleniumWrapper selenium) {
-
+    public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
+        return null;
     }
+
+
 }

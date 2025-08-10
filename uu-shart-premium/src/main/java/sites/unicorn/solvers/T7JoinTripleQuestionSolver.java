@@ -1,11 +1,13 @@
 package sites.unicorn.solvers;
 
+import knowledge.units.KnowledgeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import selenium.ByUtils;
 import selenium.SeleniumWrapper;
 import sites.UnicornTaskSolver;
 import sites.unicorn.UnicornElementConditions;
+import sites.unicorn.UnicornResultWrapper;
 
 import java.util.List;
 
@@ -38,9 +40,10 @@ public class T7JoinTripleQuestionSolver implements UnicornTaskSolver {
         }
     }
 
-
     @Override
-    public void storeSolution(SeleniumWrapper selenium) {
-
+    public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
+        return null;
     }
+
+
 }

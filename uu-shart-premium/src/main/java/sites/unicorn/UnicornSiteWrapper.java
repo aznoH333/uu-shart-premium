@@ -59,7 +59,7 @@ public class UnicornSiteWrapper {
     public void solveTest() {
         // wait for page load
         selenium.awaitElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.BUTTON_CHECK_CLASS));
-
+        ArrayList<UnicornTaskSolver> solverStack = new ArrayList<>();
         // solve tasks
         while (!isTestComplete()) {
             boolean solved = false;
@@ -70,6 +70,7 @@ public class UnicornSiteWrapper {
                 System.out.println("solving");
                 solver.passProblem(selenium);
                 solved = true;
+                solverStack.add(solver);
                 selenium.clickElementInCollection(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.CONTINUE_BUTTON_CLASS), 1);
                 break;
             }
@@ -88,10 +89,16 @@ public class UnicornSiteWrapper {
         // read results
         selenium.waitForElement(By.className(UnicornConstants.RESULTS_PAGE.RESULTS_CONTAINER_CLASS));
         List<WebElement> results = selenium.getElements(By.className(UnicornConstants.RESULTS_PAGE.RESULTS_CONTAINER_CLASS));
-        System.out.println(results.size());
-        System.exit(69);
+
+        for (WebElement result : results) {
+            UnicornTaskSolver solver = solverStack.removeFirst();
+            UnicornResultWrapper resultWrapper = new UnicornResultWrapper(result);
+            solver.generateSolution(resultWrapper);
+        }
 
         // TODO : this
+        System.exit(69);
+
     }
 
     public void addSolver(UnicornTaskSolver solver) {

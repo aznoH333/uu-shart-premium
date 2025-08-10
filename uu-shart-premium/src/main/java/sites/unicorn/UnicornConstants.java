@@ -30,6 +30,7 @@ public class UnicornConstants {
 
     public static class RESULTS_PAGE {
         public static final String RESULTS_CONTAINER_CLASS = "uu5-bricks-panel-body-body";
+        public static final String TITLE_CLASS = "uu-coursekit-dark-text";
     }
 
 

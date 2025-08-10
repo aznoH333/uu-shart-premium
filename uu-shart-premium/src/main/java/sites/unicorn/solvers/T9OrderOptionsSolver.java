@@ -1,8 +1,10 @@
 package sites.unicorn.solvers;
 
+import knowledge.units.KnowledgeUnit;
 import org.openqa.selenium.By;
 import selenium.SeleniumWrapper;
 import sites.UnicornTaskSolver;
+import sites.unicorn.UnicornResultWrapper;
 
 public class T9OrderOptionsSolver implements UnicornTaskSolver {
     private final static String BUTTON_CLASS = "uu-coursekit-question-t09-answer-option";
@@ -27,7 +29,8 @@ public class T9OrderOptionsSolver implements UnicornTaskSolver {
     }
 
     @Override
-    public void storeSolution(SeleniumWrapper selenium) {
-
+    public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
+        return null;
     }
+
 }
