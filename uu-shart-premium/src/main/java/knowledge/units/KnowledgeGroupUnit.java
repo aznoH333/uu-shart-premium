@@ -1,11 +1,11 @@
 package knowledge.units;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class AnswerGroupUnit extends KnowledgeUnit{
-    private final List<List<String>> groups;
+public class KnowledgeGroupUnit extends KnowledgeUnit{
+    private final ArrayList<ArrayList<String>> groups;
 
-    public AnswerGroupUnit(String questionTitle, List<List<String>> groups) {
+    public KnowledgeGroupUnit(String questionTitle, ArrayList<ArrayList<String>> groups) {
         super(questionTitle);
         this.groups = groups;
     }

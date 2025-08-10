@@ -16,6 +16,6 @@ public abstract class KnowledgeUnit {
     }
 
     public String toString() {
-        return getTitle() + " -> " + getAnswerString();
+        return getTitle() + " = " + getAnswerString();
     }
 }

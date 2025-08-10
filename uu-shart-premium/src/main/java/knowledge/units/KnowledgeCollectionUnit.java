@@ -3,10 +3,10 @@ package knowledge.units;
 
 import java.util.List;
 
-public class AnswerCollectionUnit extends KnowledgeUnit{
+public class KnowledgeCollectionUnit extends KnowledgeUnit{
 
     private final List<String> answers;
-    public AnswerCollectionUnit(String questionTitle, List<String> answers) {
+    public KnowledgeCollectionUnit(String questionTitle, List<String> answers) {
         super(questionTitle);
         this.answers = answers;
     }

@@ -1,10 +1,10 @@
 package knowledge.units;
 
-public class SingleAnswerUnit extends KnowledgeUnit {
+public class KnowledgeSingleUnit extends KnowledgeUnit {
 
     private final String answer;
 
-    public SingleAnswerUnit(String questionTitle, String answer) {
+    public KnowledgeSingleUnit(String questionTitle, String answer) {
         super(questionTitle);
         this.answer = answer;
     }

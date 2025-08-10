@@ -53,6 +53,9 @@ public class UnicornSiteWrapper {
             selenium.clickElement(ByUtils.compoundClass(UnicornConstants.TEST_START_PAGE.TEST_START_BUTTON));
 
             solveTest();
+
+            this.selenium.goToUrl(testUrl); // return to tests
+            this.selenium.waitForElement(ByUtils.compoundClass(UnicornConstants.TEST_MENU_PAGE.TEST_CARD_CLASS));
         }
     }
 
@@ -67,7 +70,6 @@ public class UnicornSiteWrapper {
                 if (!solver.canSolve(selenium)) {
                     continue;
                 }
-                System.out.println("solving");
                 solver.passProblem(selenium);
                 solved = true;
                 solverStack.add(solver);
@@ -83,6 +85,7 @@ public class UnicornSiteWrapper {
         selenium.clickElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.FINISH_TEST_BUTTON_CLASS));
         selenium.wait(300);
         selenium.clickElementInCollection(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.CONFIRM_TEST_BUTTON_CLASS), 1);
+        selenium.wait(300); // Wait for animations to finish
         selenium.waitForElement(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.GO_TO_RESULTS_BUTTON_CLASS));
         selenium.clickFirstInCollection(ByUtils.compoundClass(UnicornConstants.TEST_PAGE.GO_TO_RESULTS_BUTTON_CLASS));
 
@@ -93,12 +96,8 @@ public class UnicornSiteWrapper {
         for (WebElement result : results) {
             UnicornTaskSolver solver = solverStack.removeFirst();
             UnicornResultWrapper resultWrapper = new UnicornResultWrapper(result);
-            solver.generateSolution(resultWrapper);
+            knowledgeRepository.logKnowledge(solver.generateSolution(resultWrapper));
         }
-
-        // TODO : this
-        System.exit(69);
-
     }
 
     public void addSolver(UnicornTaskSolver solver) {

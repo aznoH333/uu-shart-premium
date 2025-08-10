@@ -7,6 +7,6 @@ public class UnicornElementConditions {
     public static ElementAwaitCondition HAS_TEXT_OR_IMAGE = (element)->{
         Dimension size = element.getSize();
 
-        return !element.getText().isEmpty() || (size.width > 0 && size.height > 0);
+        return !element.getText().isEmpty() || size.width > 60;
     };
 }

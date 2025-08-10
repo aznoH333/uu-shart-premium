@@ -1,5 +1,6 @@
 package sites.unicorn.solvers;
 
+import knowledge.units.KnowledgeSingleUnit;
 import knowledge.units.KnowledgeUnit;
 import org.openqa.selenium.By;
 import selenium.SeleniumWrapper;
@@ -26,7 +27,8 @@ public class T10YesNoSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        return null;
+        return new KnowledgeSingleUnit(result.getTitle(), result.getAnswerElements().getFirst().getText());
+
     }
 
 
