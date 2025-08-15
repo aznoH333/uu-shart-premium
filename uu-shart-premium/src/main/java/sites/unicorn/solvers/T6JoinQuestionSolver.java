@@ -2,7 +2,6 @@ package sites.unicorn.solvers;
 
 import knowledge.units.KnowledgeGroupUnit;
 import knowledge.units.KnowledgeUnit;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import selenium.ByUtils;
 import selenium.SeleniumWrapper;
@@ -15,10 +14,10 @@ import java.util.List;
 
 public class T6JoinQuestionSolver implements UnicornTaskSolver {
     private final static String BUTTON_CLASS = "uu-coursekit-question-t06-white-frame-answer-button";
-    private final static String ANSWER_CLASS = "uu-coursekit-question-t06-white-frame-result-answer-rows";
+    // private final static String ANSWER_CLASS = "uu-coursekit-question-t06-white-frame-result-answer-rows";
     @Override
     public String getName() {
-        return "T6Question";
+        return "T6";
     }
 
     @Override
@@ -55,7 +54,7 @@ public class T6JoinQuestionSolver implements UnicornTaskSolver {
             results.add(row);
         }
 
-        return new KnowledgeGroupUnit(result.getTitle(), results);
+        return new KnowledgeGroupUnit(result.getTitle(), this.getName(), results);
     }
 
 }

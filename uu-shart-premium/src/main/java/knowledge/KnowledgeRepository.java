@@ -11,12 +11,17 @@ public class KnowledgeRepository {
     private final HashMap<String, ArrayList<KnowledgeUnit>> knowledge;
     private String currentSectionName;
     private ArrayList<KnowledgeUnit> currentSectionUnits;
+    /**
+     * debug value. omits answers from questions with differentTypes
+     */
+    private String acceptAnswersFrom;
 
 
     public KnowledgeRepository() {
         this.knowledge = new HashMap<>();
         this.currentSectionName = null;
         this.currentSectionUnits = null;
+        this.acceptAnswersFrom = null;
     }
 
     public void startLoggingSection(String sectionName) {
@@ -37,7 +42,9 @@ public class KnowledgeRepository {
     }
 
     public void logKnowledge(KnowledgeUnit knowledgeUnit) {
-        this.currentSectionUnits.add(knowledgeUnit);
+        if (this.acceptAnswersFrom == null || this.acceptAnswersFrom.equals(knowledgeUnit.getKnowledgeOrigin())) {
+            this.currentSectionUnits.add(knowledgeUnit);
+        }
     }
 
     public String toString() {
@@ -55,5 +62,9 @@ public class KnowledgeRepository {
         }
 
         return builder.toString();
+    }
+
+    public void acceptOnlyAnswersFrom(String questionType) {
+        this.acceptAnswersFrom = questionType;
     }
 }

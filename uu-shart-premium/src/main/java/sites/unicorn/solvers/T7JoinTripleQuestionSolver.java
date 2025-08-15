@@ -18,7 +18,7 @@ public class T7JoinTripleQuestionSolver implements UnicornTaskSolver {
 
     @Override
     public String getName() {
-        return "T7Question";
+        return "T7";
     }
 
     @Override
@@ -55,7 +55,7 @@ public class T7JoinTripleQuestionSolver implements UnicornTaskSolver {
             results.add(row);
         }
 
-        return new KnowledgeGroupUnit(result.getTitle(), results);
+        return new KnowledgeGroupUnit(result.getTitle(), this.getName(), results);
     }
 
 

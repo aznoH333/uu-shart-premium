@@ -14,7 +14,7 @@ public class T11SingleChoiceMultiPartSolver implements UnicornTaskSolver {
 
     @Override
     public String getName() {
-        return "T11Question";
+        return "T11";
     }
 
     @Override
@@ -34,7 +34,7 @@ public class T11SingleChoiceMultiPartSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        return new KnowledgeCollectionUnit(result.getTitle(), result.getAnswerElements().stream().map(WebElement::getText).toList());
+        return new KnowledgeCollectionUnit(result.getTitle(), this.getName(), result.getAnswerElements().stream().map(WebElement::getText).toList());
     }
 
 

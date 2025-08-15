@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class KnowledgeGroupUnit extends KnowledgeUnit{
     private final ArrayList<ArrayList<String>> groups;
 
-    public KnowledgeGroupUnit(String questionTitle, ArrayList<ArrayList<String>> groups) {
-        super(questionTitle);
+    public KnowledgeGroupUnit(String questionTitle, String knowledgeOrigin, ArrayList<ArrayList<String>> groups) {
+        super(questionTitle, knowledgeOrigin);
         this.groups = groups;
     }
 

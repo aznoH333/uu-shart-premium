@@ -6,6 +6,32 @@ import sites.unicorn.solvers.*;
 public class Main {
     public static void main(String[] args) {
 
+        /*
+            TODO LIST:
+
+            [a] 1. Check answers
+                [ ] T1
+                [ ] T2
+                [ ] T3
+                [ ] T4
+                [ ] T6
+                [ ] T7
+                [ ] T8
+                [ ] T9
+                [ ] T10
+                [ ] T11
+            [ ] 2. Retry tests if answers were gathered
+            [ ] 3. Save to file
+            [ ] 4. Input url + output name
+            [ ] 5. Clean up main?
+            [ ] 6. Screenshot elements?
+
+
+         */
+
+
+
+
         // TODO : clean this up
         // temp main
         // algo test menu

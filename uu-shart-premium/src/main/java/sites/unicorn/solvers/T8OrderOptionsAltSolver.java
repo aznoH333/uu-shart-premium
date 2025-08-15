@@ -13,7 +13,7 @@ public class T8OrderOptionsAltSolver implements UnicornTaskSolver {
 
     @Override
     public String getName() {
-        return "T8Question";
+        return "T8";
     }
 
     @Override
@@ -32,7 +32,7 @@ public class T8OrderOptionsAltSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        return new KnowledgeCollectionUnit(result.getTitle(), result.getAnswerElements().stream().map(WebElement::getText).toList());
+        return new KnowledgeCollectionUnit(result.getTitle(), this.getName(), result.getAnswerElements().stream().map(WebElement::getText).toList());
     }
 
 }

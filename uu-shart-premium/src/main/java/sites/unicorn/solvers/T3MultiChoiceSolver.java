@@ -1,7 +1,6 @@
 package sites.unicorn.solvers;
 
 import knowledge.units.KnowledgeCollectionUnit;
-import knowledge.units.KnowledgeSingleUnit;
 import knowledge.units.KnowledgeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,7 +8,6 @@ import selenium.SeleniumWrapper;
 import sites.UnicornTaskSolver;
 import sites.unicorn.UnicornResultWrapper;
 
-import java.util.stream.Collectors;
 
 
 public class T3MultiChoiceSolver implements UnicornTaskSolver {
@@ -17,7 +15,7 @@ public class T3MultiChoiceSolver implements UnicornTaskSolver {
 
     @Override
     public String getName() {
-        return "T3Question";
+        return "T3";
     }
 
     @Override
@@ -33,7 +31,7 @@ public class T3MultiChoiceSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        return new KnowledgeCollectionUnit(result.getTitle(), result.getAnswerElements().stream().map(WebElement::getText).toList());
+        return new KnowledgeCollectionUnit(result.getTitle(), this.getName(), result.getAnswerElements().stream().map(WebElement::getText).toList());
     }
 
 }

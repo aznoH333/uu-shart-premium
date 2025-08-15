@@ -12,7 +12,7 @@ public class T10YesNoSolver implements UnicornTaskSolver {
 
     @Override
     public String getName() {
-        return "T10Question";
+        return "T10";
     }
 
     @Override
@@ -27,7 +27,7 @@ public class T10YesNoSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        return new KnowledgeSingleUnit(result.getTitle(), result.getAnswerElements().getFirst().getText());
+        return new KnowledgeSingleUnit(result.getTitle(), this.getName(), result.getAnswerElements().getFirst().getText());
 
     }
 

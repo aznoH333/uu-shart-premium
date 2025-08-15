@@ -13,7 +13,7 @@ public class T4PicturePickSolver implements UnicornTaskSolver {
 
     @Override
     public String getName() {
-        return "T4Question";
+        return "T4";
     }
 
     @Override
@@ -28,7 +28,7 @@ public class T4PicturePickSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        return new KnowledgeSingleUnit(result.getTitle(), "TODO : implement screenshots");
+        return new KnowledgeSingleUnit(result.getTitle(), this.getName(), "TODO : implement screenshots");
     }
 
 }

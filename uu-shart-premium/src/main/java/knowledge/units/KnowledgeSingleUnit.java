@@ -4,8 +4,8 @@ public class KnowledgeSingleUnit extends KnowledgeUnit {
 
     private final String answer;
 
-    public KnowledgeSingleUnit(String questionTitle, String answer) {
-        super(questionTitle);
+    public KnowledgeSingleUnit(String questionTitle, String knowledgeOrigin, String answer) {
+        super(questionTitle, knowledgeOrigin);
         this.answer = answer;
     }
 

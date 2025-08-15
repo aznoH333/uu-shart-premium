@@ -12,7 +12,7 @@ public class T1PickOneSolver implements UnicornTaskSolver {
 
     @Override
     public String getName() {
-        return "T1Question";
+        return "T1";
     }
 
     @Override
@@ -27,7 +27,7 @@ public class T1PickOneSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        return new KnowledgeSingleUnit(result.getTitle(), result.getAnswerElements().getFirst().getText());
+        return new KnowledgeSingleUnit(result.getTitle(), this.getName(), result.getAnswerElements().getFirst().getText());
     }
 
 }
