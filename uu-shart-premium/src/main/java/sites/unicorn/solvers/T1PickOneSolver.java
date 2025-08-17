@@ -3,12 +3,15 @@ package sites.unicorn.solvers;
 import knowledge.units.KnowledgeSingleUnit;
 import knowledge.units.KnowledgeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import selenium.SeleniumWrapper;
 import sites.UnicornTaskSolver;
 import sites.unicorn.UnicornResultWrapper;
 
 public class T1PickOneSolver implements UnicornTaskSolver {
     private static final String BUTTON_CLASS = "uu-coursekit-question-t01-white-frame-answer-button";
+    private static final String CORRECT_CLASS = "uu-coursekit-question-t01-white-frame-answer-correct-answer-button-correct";
+    private static final String RESULT_CLASS = "uu-coursekit-question-t01-white-frame-result-answer-button-correct";
 
     @Override
     public String getName() {
@@ -27,7 +30,12 @@ public class T1PickOneSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        return new KnowledgeSingleUnit(result.getTitle(), this.getName(), result.getAnswerElements().getFirst().getText());
+        System.out.println("TITLE: " + result.getTitle());
+        System.out.println("CORRECT : " + result.isCorrect());
+        for (WebElement answer : result.findAnswers(CORRECT_CLASS, RESULT_CLASS)) {
+            System.out.println(SeleniumWrapper.acquireText(answer));
+        }
+        return new KnowledgeSingleUnit(result.getTitle(), this.getName(), SeleniumWrapper.acquireText(result.findAnswers(CORRECT_CLASS, RESULT_CLASS).getFirst()));
     }
 
 }

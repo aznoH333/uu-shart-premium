@@ -1,6 +1,7 @@
 package sites.unicorn.solvers;
 
 import knowledge.units.KnowledgeGroupUnit;
+import knowledge.units.KnowledgeSingleUnit;
 import knowledge.units.KnowledgeUnit;
 import org.openqa.selenium.WebElement;
 import selenium.ByUtils;
@@ -28,7 +29,6 @@ public class T6JoinQuestionSolver implements UnicornTaskSolver {
     @Override
     public void passProblem(SeleniumWrapper selenium) {
         List<WebElement> buttons = selenium.getElements(ByUtils.classNameParentsOnly(BUTTON_CLASS));
-        System.out.println(buttons.size());
         int combinationCount = buttons.size() / 2;
         int deadIndicies = 0;
 
@@ -42,7 +42,7 @@ public class T6JoinQuestionSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        List<WebElement> answers = result.getAnswerElements();
+        List<WebElement> answers = result.findAnswers("", "");
 
         ArrayList<ArrayList<String>> results = new ArrayList<>();
         for (int i = 0; i < answers.size() - 2; i += 2) {
@@ -53,8 +53,9 @@ public class T6JoinQuestionSolver implements UnicornTaskSolver {
             row.add(answers.get(i + 1).getText());
             results.add(row);
         }
+        return new KnowledgeSingleUnit("", "", "");
 
-        return new KnowledgeGroupUnit(result.getTitle(), this.getName(), results);
+        //return new KnowledgeGroupUnit(result.getTitle(), this.getName(), results);
     }
 
 }

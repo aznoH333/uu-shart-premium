@@ -27,7 +27,10 @@ public class T10YesNoSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        return new KnowledgeSingleUnit(result.getTitle(), this.getName(), result.getAnswerElements().getFirst().getText());
+
+        return new KnowledgeSingleUnit("", "", "");
+
+        //return new KnowledgeSingleUnit(result.getTitle(), this.getName(), result.findAnswers("", "").getFirst().getText());
 
     }
 

@@ -32,7 +32,6 @@ public class KnowledgeRepository {
         this.currentSectionName = sectionName;
         this.currentSectionUnits = new ArrayList<>();
 
-        System.out.println("Started logging section: " + this.currentSectionName);
     }
 
     private void saveCurrentSection() {

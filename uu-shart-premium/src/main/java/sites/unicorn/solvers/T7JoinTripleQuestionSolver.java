@@ -1,6 +1,7 @@
 package sites.unicorn.solvers;
 
 import knowledge.units.KnowledgeGroupUnit;
+import knowledge.units.KnowledgeSingleUnit;
 import knowledge.units.KnowledgeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -44,7 +45,7 @@ public class T7JoinTripleQuestionSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        List<WebElement> answers = result.getAnswerElements();
+        List<WebElement> answers = result.findAnswers("", "");
 
         ArrayList<ArrayList<String>> results = new ArrayList<>();
         for (int i = 0; i < answers.size(); i += 3) {
@@ -54,8 +55,9 @@ public class T7JoinTripleQuestionSolver implements UnicornTaskSolver {
             row.add(answers.get(i + 2).getText());
             results.add(row);
         }
+        return new KnowledgeSingleUnit("", "", "");
 
-        return new KnowledgeGroupUnit(result.getTitle(), this.getName(), results);
+        //return new KnowledgeGroupUnit(result.getTitle(), this.getName(), results);
     }
 
 

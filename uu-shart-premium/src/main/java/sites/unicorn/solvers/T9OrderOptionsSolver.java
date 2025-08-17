@@ -1,6 +1,7 @@
 package sites.unicorn.solvers;
 
 import knowledge.units.KnowledgeCollectionUnit;
+import knowledge.units.KnowledgeSingleUnit;
 import knowledge.units.KnowledgeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -32,7 +33,9 @@ public class T9OrderOptionsSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        return new KnowledgeCollectionUnit(result.getTitle(), this.getName(), result.getAnswerElements().stream().map(WebElement::getText).toList());
+        return new KnowledgeSingleUnit("", "", "");
+
+        //return new KnowledgeCollectionUnit(result.getTitle(), this.getName(), result.findAnswers("", "").stream().map(WebElement::getText).toList());
     }
 
 }

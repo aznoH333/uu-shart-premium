@@ -8,6 +8,6 @@ public class ByUtils {
     }
 
     public static By classNameParentsOnly(String className) {
-        return By.xpath("//*[contains(@class, '" + className +"') and not (ancestor::*[contains(@class,'" + className + "')])]");
+        return By.xpath(".//*[contains(@class, '" + className +"') and not (ancestor::*[contains(@class,'" + className + "')])]");
     }
 }

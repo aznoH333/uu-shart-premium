@@ -215,4 +215,11 @@ public class SeleniumWrapper {
         }
         return index;
     }
+
+    public static String acquireText(WebElement element) {
+        return element.getText()
+                .replace("\n", "")
+                .replace("\r", "")
+                .replace("\t", "");
+    }
 }

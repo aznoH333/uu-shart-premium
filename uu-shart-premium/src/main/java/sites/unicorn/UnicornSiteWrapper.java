@@ -53,9 +53,9 @@ public class UnicornSiteWrapper {
             selenium.clickElement(ByUtils.compoundClass(UnicornConstants.TEST_START_PAGE.TEST_START_BUTTON));
 
             solveTest();
-
-            this.selenium.goToUrl(testUrl); // return to tests
-            this.selenium.waitForElement(ByUtils.compoundClass(UnicornConstants.TEST_MENU_PAGE.TEST_CARD_CLASS));
+            return; // TEMP
+            // this.selenium.goToUrl(testUrl); // return to tests
+            // this.selenium.waitForElement(ByUtils.compoundClass(UnicornConstants.TEST_MENU_PAGE.TEST_CARD_CLASS));
         }
     }
 
@@ -98,6 +98,8 @@ public class UnicornSiteWrapper {
             UnicornResultWrapper resultWrapper = new UnicornResultWrapper(result);
             knowledgeRepository.logKnowledge(solver.generateSolution(resultWrapper));
         }
+
+
     }
 
     public void addSolver(UnicornTaskSolver solver) {
