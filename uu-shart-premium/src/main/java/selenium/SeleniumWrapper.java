@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import utils.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -217,9 +218,9 @@ public class SeleniumWrapper {
     }
 
     public static String acquireText(WebElement element) {
-        return element.getText()
+        return TextUtils.removeBreaks(element.getText()
                 .replace("\n", "")
                 .replace("\r", "")
-                .replace("\t", "");
+                .replace("\t", ""));
     }
 }

@@ -36,4 +36,8 @@ public class UnicornResultWrapper {
     public List<WebElement> findAnswers(String correctClass, String resultClass) {
         return this.element.findElements(ByUtils.classNameParentsOnly(this.correct ? correctClass : resultClass));
     }
+
+    public List<WebElement> findAnswersLame(String correctClass, String resultClass) {
+        return this.element.findElements(ByUtils.classNameWithText(this.correct ? correctClass : resultClass));
+    }
 }

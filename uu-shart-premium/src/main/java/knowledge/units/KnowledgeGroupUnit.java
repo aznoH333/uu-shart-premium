@@ -1,13 +1,16 @@
 package knowledge.units;
 
+import utils.TextUtils;
+
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class KnowledgeGroupUnit extends KnowledgeUnit{
     private final ArrayList<ArrayList<String>> groups;
 
     public KnowledgeGroupUnit(String questionTitle, String knowledgeOrigin, ArrayList<ArrayList<String>> groups) {
         super(questionTitle, knowledgeOrigin);
-        this.groups = groups;
+        this.groups = groups.stream().map(it->it.stream().map(TextUtils::removeBreaks).collect(Collectors.toCollection(ArrayList::new))).collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override

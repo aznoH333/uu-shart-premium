@@ -15,7 +15,8 @@ import java.util.List;
 
 public class T6JoinQuestionSolver implements UnicornTaskSolver {
     private final static String BUTTON_CLASS = "uu-coursekit-question-t06-white-frame-answer-button";
-    // private final static String ANSWER_CLASS = "uu-coursekit-question-t06-white-frame-result-answer-rows";
+    private static final String CORRECT_CLASS = "uu-coursekit-correct-state";
+    private static final String RESULT_CLASS = "uu-coursekit-result-state";
     @Override
     public String getName() {
         return "T6";
@@ -42,7 +43,7 @@ public class T6JoinQuestionSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        List<WebElement> answers = result.findAnswers("", "");
+        List<WebElement> answers = result.findAnswersLame(CORRECT_CLASS, RESULT_CLASS);
 
         ArrayList<ArrayList<String>> results = new ArrayList<>();
         for (int i = 0; i < answers.size() - 2; i += 2) {
@@ -53,9 +54,8 @@ public class T6JoinQuestionSolver implements UnicornTaskSolver {
             row.add(answers.get(i + 1).getText());
             results.add(row);
         }
-        return new KnowledgeSingleUnit("", "", "");
 
-        //return new KnowledgeGroupUnit(result.getTitle(), this.getName(), results);
+        return new KnowledgeGroupUnit(result.getTitle(), this.getName(), results);
     }
 
 }

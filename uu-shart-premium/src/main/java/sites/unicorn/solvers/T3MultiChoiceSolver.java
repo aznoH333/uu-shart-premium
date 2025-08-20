@@ -13,6 +13,8 @@ import sites.unicorn.UnicornResultWrapper;
 
 public class T3MultiChoiceSolver implements UnicornTaskSolver {
     private static final String BUTTON_CLASS = "uu-coursekit-question-t03-white-frame-answer-button";
+    private static final String CORRECT_CLASS = "uu-coursekit-correct-state";
+    private static final String RESULT_CLASS = "uu-coursekit-result-state";
 
     @Override
     public String getName() {
@@ -32,9 +34,8 @@ public class T3MultiChoiceSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        return new KnowledgeSingleUnit("", "", "");
 
-        //return new KnowledgeCollectionUnit(result.getTitle(), this.getName(), result.findAnswers("", "").stream().map(WebElement::getText).toList());
+        return new KnowledgeCollectionUnit(result.getTitle(), this.getName(), result.findAnswersLame(CORRECT_CLASS, RESULT_CLASS).stream().map(WebElement::getText).toList());
     }
 
 }

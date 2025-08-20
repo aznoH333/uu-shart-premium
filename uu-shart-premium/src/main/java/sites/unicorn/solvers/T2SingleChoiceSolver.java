@@ -3,6 +3,7 @@ package sites.unicorn.solvers;
 import knowledge.units.KnowledgeSingleUnit;
 import knowledge.units.KnowledgeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import selenium.SeleniumWrapper;
 import sites.UnicornTaskSolver;
 import sites.unicorn.UnicornResultWrapper;
@@ -10,6 +11,8 @@ import sites.unicorn.UnicornResultWrapper;
 
 public class T2SingleChoiceSolver implements UnicornTaskSolver {
     private static final String BUTTON_CLASS = "uu-coursekit-question-t02-white-frame-answer-button";
+    private static final String CORRECT_CLASS = "uu-coursekit-correct-state";
+    private static final String RESULT_CLASS = "uu-coursekit-result-state";
 
     @Override
     public String getName() {
@@ -28,9 +31,16 @@ public class T2SingleChoiceSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
+        for (WebElement a : result.findAnswers(CORRECT_CLASS, RESULT_CLASS)) {
+            System.out.println("-");
+            System.out.println(a.getText());
+        }
+        for (WebElement a : result.findAnswersLame(CORRECT_CLASS, RESULT_CLASS)) {
+            System.out.println("-+");
 
-        return new KnowledgeSingleUnit("", "", "");
-        //return new KnowledgeSingleUnit(result.getTitle(), this.getName(), result.findAnswers("", "").getFirst().getText());
+            System.out.println(a.getText());
+        }
+        return new KnowledgeSingleUnit(result.getTitle(), this.getName(), SeleniumWrapper.acquireText(result.findAnswersLame(CORRECT_CLASS, RESULT_CLASS).getFirst()));
     }
 
 }

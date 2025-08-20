@@ -10,7 +10,6 @@ import sites.unicorn.UnicornResultWrapper;
 
 public class T4PicturePickSolver implements UnicornTaskSolver {
     private static final String BUTTON_CLASS = "uu-coursekit-question-t04-white-frame-answer-border";
-
     @Override
     public String getName() {
         return "T4";

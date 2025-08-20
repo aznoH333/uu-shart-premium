@@ -1,12 +1,14 @@
 package knowledge.units;
 
+import utils.TextUtils;
+
 public class KnowledgeSingleUnit extends KnowledgeUnit {
 
     private final String answer;
 
     public KnowledgeSingleUnit(String questionTitle, String knowledgeOrigin, String answer) {
         super(questionTitle, knowledgeOrigin);
-        this.answer = answer;
+        this.answer = TextUtils.removeBreaks(answer);
     }
 
 

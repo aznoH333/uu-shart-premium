@@ -30,11 +30,6 @@ public class T1PickOneSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        System.out.println("TITLE: " + result.getTitle());
-        System.out.println("CORRECT : " + result.isCorrect());
-        for (WebElement answer : result.findAnswers(CORRECT_CLASS, RESULT_CLASS)) {
-            System.out.println(SeleniumWrapper.acquireText(answer));
-        }
         return new KnowledgeSingleUnit(result.getTitle(), this.getName(), SeleniumWrapper.acquireText(result.findAnswers(CORRECT_CLASS, RESULT_CLASS).getFirst()));
     }
 

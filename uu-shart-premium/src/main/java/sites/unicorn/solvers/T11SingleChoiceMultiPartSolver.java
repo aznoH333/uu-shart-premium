@@ -12,7 +12,8 @@ import sites.unicorn.UnicornResultWrapper;
 public class T11SingleChoiceMultiPartSolver implements UnicornTaskSolver {
     private final static String BUTTON_CLASS = "uu-coursekit-question-t11-white-frame-answer-button";
     private final static String REPLACEMENT_BUTTON = "uu-coursekit-question-t11-task-replacement-button";
-
+    private static final String CORRECT_CLASS = "uu-coursekit-question-t11-white-frame-answer-correct-answer-button-correct";
+    private static final String RESULT_CLASS = "uu-coursekit-question-t11-white-frame-result-answer-button-correct";
     @Override
     public String getName() {
         return "T11";
@@ -35,9 +36,8 @@ public class T11SingleChoiceMultiPartSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        return new KnowledgeSingleUnit("", "", "");
 
-        //return new KnowledgeCollectionUnit(result.getTitle(), this.getName(), result.findAnswers("", "").stream().map(WebElement::getText).toList());
+        return new KnowledgeCollectionUnit(result.getTitle(), this.getName(), result.findAnswers(CORRECT_CLASS, RESULT_CLASS).stream().map(WebElement::getText).toList());
     }
 
 
