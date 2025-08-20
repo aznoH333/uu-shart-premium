@@ -12,6 +12,6 @@ public class ByUtils {
     }
 
     public static By classNameWithText(String className) {
-        return By.xpath(".//*[contains(@class, '" + className +"') and string()]");
+        return By.xpath(".//*[contains(concat(' ', normalize-space(@class), ' '), ' "+ className + " ') and string() and not (ancestor::*[contains(concat(' ', normalize-space(@class), ' '), ' "+ className + " ')])]");
     }
 }

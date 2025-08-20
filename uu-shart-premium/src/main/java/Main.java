@@ -11,15 +11,15 @@ public class Main {
 
             [a] 1. Check answers
                 [X] T1
-                [a] T2
-                [a] T3
-                [a] T4
+                [X] T2
+                [X] T3
+                [X] T4
                 [a] T6
                 [a] T7
-                [a] T8
-                [a] T9
+                [X] T8
+                [X] T9
                 [X] T10
-                [a] T11
+                [X] T11
             [ ] 2. Retry tests if answers were gathered
             [ ] 3. Save to file
             [ ] 4. Input url + output name
