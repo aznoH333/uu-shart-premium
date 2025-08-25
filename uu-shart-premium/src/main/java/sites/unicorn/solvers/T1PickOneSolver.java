@@ -3,7 +3,6 @@ package sites.unicorn.solvers;
 import knowledge.units.KnowledgeSingleUnit;
 import knowledge.units.KnowledgeUnit;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import selenium.SeleniumWrapper;
 import sites.UnicornTaskSolver;
 import sites.unicorn.UnicornResultWrapper;

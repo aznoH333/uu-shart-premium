@@ -12,7 +12,6 @@ public class T2SingleChoiceSolver implements UnicornTaskSolver {
     private static final String BUTTON_CLASS = "uu-coursekit-question-t02-white-frame-answer-button";
     private static final String CORRECT_CLASS = "uu-coursekit-correct-state";
     private static final String RESULT_CLASS = "uu-coursekit-result-state";
-
     @Override
     public String getName() {
         return "T2";
