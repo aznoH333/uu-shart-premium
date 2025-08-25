@@ -3,7 +3,6 @@ package sites.unicorn.solvers;
 import knowledge.units.KnowledgeSingleUnit;
 import knowledge.units.KnowledgeUnit;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import selenium.SeleniumWrapper;
 import sites.UnicornTaskSolver;
 import sites.unicorn.UnicornResultWrapper;
@@ -31,16 +30,7 @@ public class T2SingleChoiceSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        for (WebElement a : result.findAnswers(CORRECT_CLASS, RESULT_CLASS)) {
-            System.out.println("-");
-            System.out.println(a.getText());
-        }
-        for (WebElement a : result.findAnswersLame(CORRECT_CLASS, RESULT_CLASS)) {
-            System.out.println("-+");
-
-            System.out.println(a.getText());
-        }
-        return new KnowledgeSingleUnit(result.getTitle(), this.getName(), SeleniumWrapper.acquireText(result.findAnswersLame(CORRECT_CLASS, RESULT_CLASS).getFirst()));
+        return new KnowledgeSingleUnit(result.getTitle(), this.getName(), SeleniumWrapper.acquireText(result.findAnswers(CORRECT_CLASS, RESULT_CLASS).getFirst()));
     }
 
 }

@@ -46,7 +46,11 @@ public class T7JoinTripleQuestionSolver implements UnicornTaskSolver {
 
     @Override
     public KnowledgeUnit generateSolution(UnicornResultWrapper result) {
-        List<WebElement> answers = result.findAnswersLame(CORRECT_CLASS, RESULT_CLASS);
+        List<WebElement> answers = result.findAnswers(CORRECT_CLASS, RESULT_CLASS);
+
+        for (WebElement answer : answers) {
+            System.out.println(answer.getText());
+        }
 
         ArrayList<ArrayList<String>> results = new ArrayList<>();
         for (int i = 0; i < answers.size(); i += 3) {
@@ -54,7 +58,7 @@ public class T7JoinTripleQuestionSolver implements UnicornTaskSolver {
             row.add(answers.get(i).getText());
             row.add(answers.get(i + 1).getText());
             row.add(answers.get(i + 2).getText());
-            results.add(row); // TODO this crashes
+            results.add(row);
         }
 
         return new KnowledgeGroupUnit(result.getTitle(), this.getName(), results);

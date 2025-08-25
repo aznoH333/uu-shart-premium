@@ -9,18 +9,8 @@ public class Main {
         /*
             TODO LIST:
 
-            [a] 1. Check answers
-                [X] T1
-                [X] T2
-                [X] T3
-                [X] T4
-                [a] T6
-                [a] T7
-                [X] T8
-                [X] T9
-                [X] T10
-                [X] T11
-            [ ] 2. Retry tests if answers were gathered
+            [x] 1. Check answers
+            [a] 2. Retry tests if answers were gathered
             [ ] 3. Save to file
             [ ] 4. Input url + output name
             [ ] 5. Clean up main?
@@ -38,7 +28,6 @@ public class Main {
         String tempUrl = "https://uuapp.plus4u.net/uu-coursekit-courseg01/286a85d928da49ebb60816c715ae15dc/course/testMenu";
 
         KnowledgeRepository knowledge = new KnowledgeRepository(); // TODO load from file?
-        // knowledge.acceptOnlyAnswersFrom("T2");
 
         SeleniumWrapper selenium = new SeleniumWrapper();
         UnicornSiteWrapper unicornSite = new UnicornSiteWrapper(tempUrl, selenium, knowledge);

@@ -46,6 +46,10 @@ public class KnowledgeRepository {
         }
     }
 
+    public boolean containsKnowledge(String knowledgeName) {
+        return this.knowledge.containsKey(knowledgeName);
+    }
+
     public String toString() {
         this.saveCurrentSection();
         StringBuilder builder = new StringBuilder();

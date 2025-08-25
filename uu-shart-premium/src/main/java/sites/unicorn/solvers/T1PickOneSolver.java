@@ -10,8 +10,8 @@ import sites.unicorn.UnicornResultWrapper;
 
 public class T1PickOneSolver implements UnicornTaskSolver {
     private static final String BUTTON_CLASS = "uu-coursekit-question-t01-white-frame-answer-button";
-    private static final String CORRECT_CLASS = "uu-coursekit-question-t01-white-frame-answer-correct-answer-button-correct";
-    private static final String RESULT_CLASS = "uu-coursekit-question-t01-white-frame-result-answer-button-correct";
+    private static final String CORRECT_CLASS = "uu-coursekit-correct-state";
+    private static final String RESULT_CLASS = "uu-coursekit-result-state";
 
     @Override
     public String getName() {

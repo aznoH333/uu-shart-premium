@@ -46,7 +46,7 @@ public class T6JoinQuestionSolver implements UnicornTaskSolver {
         List<WebElement> answers = result.findAnswersLame(CORRECT_CLASS, RESULT_CLASS);
 
         ArrayList<ArrayList<String>> results = new ArrayList<>();
-        for (int i = 0; i < answers.size() - 2; i += 2) {
+        for (int i = 0; i < answers.size(); i += 2) {
 
 
             ArrayList<String> row = new ArrayList<>();
