@@ -2,6 +2,8 @@ import knowledge.KnowledgeRepository;
 import selenium.SeleniumWrapper;
 import sites.unicorn.UnicornSiteWrapper;
 import sites.unicorn.solvers.*;
+import utils.FileUtils;
+import utils.Logger;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,8 +12,8 @@ public class Main {
             TODO LIST:
 
             [x] 1. Check answers
-            [a] 2. Retry tests if answers were gathered
-            [ ] 3. Save to file
+            [x] 2. Retry tests if answers were gathered
+            [a] 3. Save to file
             [ ] 4. Input url + output name
             [ ] 5. Clean up main?
             [ ] 6. Screenshot elements?
@@ -19,13 +21,13 @@ public class Main {
 
          */
 
-
+        String outputName = "testOutput.txt";
 
 
         // TODO : clean this up
         // temp main
         // algo test menu
-        String tempUrl = "https://uuapp.plus4u.net/uu-coursekit-courseg01/286a85d928da49ebb60816c715ae15dc/course/testMenu";
+        String tempUrl = "https://uuapp.plus4u.net/uu-coursekit-courseg01/99923616732453117-8d5e19993bc042da8b5dd7812c93dfef/course/testMenu";
 
         KnowledgeRepository knowledge = new KnowledgeRepository(); // TODO load from file?
 
@@ -46,8 +48,14 @@ public class Main {
 
 
         unicornSite.login();
-        unicornSite.gatherAnswers();
 
-        System.out.println(knowledge);
+        try {
+            unicornSite.gatherAnswers();
+        } catch (Exception e) {
+            Logger.logMessage("Unhandled exception: " + e.getMessage());
+        }
+        // log results
+        FileUtils.writeFile("logOutput.txt", Logger.getLog());
+        FileUtils.writeFile(outputName, knowledge.toString());
     }
 }

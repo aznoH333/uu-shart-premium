@@ -10,7 +10,6 @@ public class KnowledgeRepository {
 
     private final HashMap<String, ArrayList<KnowledgeUnit>> knowledge;
     private String currentSectionName;
-    private ArrayList<KnowledgeUnit> currentSectionUnits;
     /**
      * debug value. omits answers from questions with differentTypes
      */
@@ -19,39 +18,37 @@ public class KnowledgeRepository {
 
     public KnowledgeRepository() {
         this.knowledge = new HashMap<>();
-        this.currentSectionName = null;
-        this.currentSectionUnits = null;
         this.acceptAnswersFrom = null;
+        this.currentSectionName = null;
     }
 
     public void startLoggingSection(String sectionName) {
-
-        this.saveCurrentSection();
-
-
         this.currentSectionName = sectionName;
-        this.currentSectionUnits = new ArrayList<>();
-
     }
 
-    private void saveCurrentSection() {
-        if (this.currentSectionName != null) {
-            this.knowledge.put(this.currentSectionName, this.currentSectionUnits);
-        }
-    }
 
     public void logKnowledge(KnowledgeUnit knowledgeUnit) {
         if (this.acceptAnswersFrom == null || this.acceptAnswersFrom.equals(knowledgeUnit.getKnowledgeOrigin())) {
-            this.currentSectionUnits.add(knowledgeUnit);
+
+            if (!this.knowledge.containsKey(this.currentSectionName)) {
+                this.knowledge.put(this.currentSectionName, new ArrayList<>());
+            }
+            this.knowledge.get(this.currentSectionName).add(knowledgeUnit);
+
         }
     }
 
     public boolean containsKnowledge(String knowledgeName) {
-        return this.knowledge.containsKey(knowledgeName);
+        for (KnowledgeUnit unit : this.knowledge.get(this.currentSectionName)) {
+            if (knowledgeName.equals(unit.getTitle())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public String toString() {
-        this.saveCurrentSection();
         StringBuilder builder = new StringBuilder();
 
         for (Map.Entry<String, ArrayList<KnowledgeUnit>> section : this.knowledge.entrySet()) {

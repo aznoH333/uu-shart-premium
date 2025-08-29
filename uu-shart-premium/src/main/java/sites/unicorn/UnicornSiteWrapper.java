@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import selenium.ByUtils;
 import selenium.SeleniumWrapper;
 import sites.UnicornTaskSolver;
+import utils.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,21 +104,21 @@ public class UnicornSiteWrapper {
         List<WebElement> results = selenium.getElements(By.className(UnicornConstants.RESULTS_PAGE.RESULTS_CONTAINER_CLASS));
 
         boolean foundNew = false;
-        int counter = 0;
         for (WebElement result : results) {
             UnicornTaskSolver solver = solverStack.removeFirst();
             UnicornResultWrapper resultWrapper = new UnicornResultWrapper(result);
-            counter++;
-            System.out.println(resultWrapper.getTitle() + " " + counter);
 
-            try { // TODO : solution off by one?
+            try {
                 KnowledgeUnit knowledge = solver.generateSolution(resultWrapper);
+                System.out.println("processing knowledge");
                 if (!knowledgeRepository.containsKnowledge(knowledge.getTitle())) {
                     knowledgeRepository.logKnowledge(knowledge);
+                    System.out.println("logging new knowledge" + knowledge.getTitle());
                     foundNew = true;
                 }
             } catch (Exception e) {
-                throw e;
+                Logger.logMessage("Failed to generate solution for question " + resultWrapper.getTitle() + " \n Question type : " + solver.getName() + "\n Error message: " + e.getMessage());
+
             }
         }
 
