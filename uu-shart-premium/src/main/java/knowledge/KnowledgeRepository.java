@@ -23,6 +23,9 @@ public class KnowledgeRepository {
     }
 
     public void startLoggingSection(String sectionName) {
+        if (!this.knowledge.containsKey(sectionName)) {
+            this.knowledge.put(sectionName, new ArrayList<>());
+        }
         this.currentSectionName = sectionName;
     }
 
@@ -41,10 +44,11 @@ public class KnowledgeRepository {
     public boolean containsKnowledge(String knowledgeName) {
         for (KnowledgeUnit unit : this.knowledge.get(this.currentSectionName)) {
             if (knowledgeName.equals(unit.getTitle())) {
+                System.out.println("found");
                 return true;
             }
         }
-
+        System.out.println("not found");
         return false;
     }
 

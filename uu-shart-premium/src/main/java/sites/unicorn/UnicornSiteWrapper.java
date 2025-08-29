@@ -110,7 +110,6 @@ public class UnicornSiteWrapper {
 
             try {
                 KnowledgeUnit knowledge = solver.generateSolution(resultWrapper);
-                System.out.println("processing knowledge");
                 if (!knowledgeRepository.containsKnowledge(knowledge.getTitle())) {
                     knowledgeRepository.logKnowledge(knowledge);
                     System.out.println("logging new knowledge" + knowledge.getTitle());
